@@ -2,8 +2,8 @@
 set -euxo pipefail
 
 # Check that we are running from the right directory.
-if [ ! "${PWD##*/}" = "spam" ]; then
-    echo "Script must be run from spam directory" >&2
+if [ ! "${PWD##*/}" = "getting_started" ]; then
+    echo "Script must be run from getting_started directory" >&2
     exit 1
 fi
 
@@ -22,7 +22,7 @@ done
 if [ "$RELOAD" = true ]; then
     if [ -d "data/" ]; then rm -Rf "data/"; fi
     mkdir -p data
-    wget $DATA_URL -O data.zip
+    curl $DATA_URL > data.zip
     mv data.zip data/
     cd data
     unzip data.zip
